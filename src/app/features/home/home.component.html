@@ -1,0 +1,133 @@
+<header class="padding-padrao logo">
+  <div class="d-flex gap-2 align-items-center logo">
+    <h5>Pede Já</h5>
+    <span class="material-symbols-outlined"> local_cafe </span>
+  </div>
+  <div class="d-flex gap-2 align-items-center clickable" id="account">
+    <div class="mobile-order open-order">
+      <span
+        type="button"
+        class="material-symbols-outlined"
+        data-bs-toggle="modal"
+        data-bs-target="#orders"
+      >
+        shopping_cart
+      </span>
+    </div>
+    <span class="material-symbols-outlined" style="font-size: 32px">
+      account_circle
+    </span>
+  </div>
+</header>
+
+<div class="padding-padrao container-fluid">
+  <div class="row">
+    <main class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+      <div class="presentation">
+        <h2>Nosso menu</h2>
+        <div>
+          Gerar algum texto bonitinho pra colocar nessa legenda para
+          complementar um espaço em branco no site, pode gerar com qualquer IA,
+          sla gpt, gemini ou copilot.
+        </div>
+      </div>
+
+      <div class="row">
+        <div
+          class="col-lg-4 col-md-4 col-sm-6 mb-4"
+          *ngFor="let product of products"
+        >
+          <app-food-card
+            [product]="product"
+            (add)="addToOrder($event)"
+          ></app-food-card>
+        </div>
+      </div>
+    </main>
+   
+    <div class="col-xl-4 col-md-12 col-sm-12">
+      <app-address></app-address>
+      <div class="desktop-order" style="position: sticky; top: 5rem">
+        <aside>
+          <h6>DELIVERY</h6>
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="material-symbols-outlined"> location_on </span>
+                  <div>
+                    <b>Entregar em</b>
+                    <div>{{ this.address }}</div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center cursor-pointer">
+                  <span
+                    class="material-symbols-outlined"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addressModal"
+                  >
+                    edit
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <app-order
+            [orderItems]="orderItems"
+            (remove)="removeFromOrder($event)"
+            (increase)="increaseItemQuantity($event)"
+            (decrease)="decreaseItemQuantity($event)"
+          ></app-order>
+        </aside>
+      </div>
+
+      <div class="mobile-order">
+        <!-- trigger modal -->
+        <!-- <div class="open-order">
+          <div>{{ getTotalQuantity(orderMap) }}</div>
+          <span
+            type="button"
+            class="material-symbols-outlined"
+            data-bs-toggle="modal"
+            data-bs-target="#orders"
+          >
+            shopping_cart
+          </span>
+        </div> -->
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="orders"
+          data-bs-backdrop="static"
+          data-bs-keyboard="true"
+          tabindex="-1"
+          aria-labelledby="ordersLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-fullscreen-xl-down">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <app-order
+                  [orderItems]="orderItems"
+                  (remove)="removeFromOrder($event)"
+                  (increase)="increaseItemQuantity($event)"
+                  (decrease)="decreaseItemQuantity($event)"
+                ></app-order>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

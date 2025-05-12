@@ -1,0 +1,52 @@
+ul {
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.btn-remove {
+  color: #b8b8b8;
+}
+
+.quantity-item-container {
+  border: 1px solid #b8b8b8;
+  border-radius: 4px;
+}
+
+.orders {
+  max-height: 40dvh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 1200px) {
+  .orders {
+    scrollbar-width: none;
+    max-height: 100%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .orders {
+    padding: 0 16px;
+  }
+}
+
+
+.finish-order {
+  p {
+    font-size: 1.2rem;
+  }
+  .btn-finish-order {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    color: #fcfcfc;
+    font-weight: 600;
+    background-color: #57b039;
+  }
+}

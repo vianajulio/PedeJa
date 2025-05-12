@@ -1,0 +1,61 @@
+.padding-padrao {
+  padding: 0 64px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  height: 64px;
+  margin-bottom: 64px;
+  background-color: #fcfcfc;
+
+  box-shadow: 1px 3px 3px 2px rgba(20, 20, 20, 0.068);
+  -webkit-box-shadow: 1px 3px 3px 2px rgba(20, 20, 20, 0.068);
+  -moz-box-shadow: 1px 3px 3px 2px rgba(20, 20, 20, 0.068);
+
+  .logo {
+    color: #57b039;
+  }
+}
+
+.presentation {
+  width: 60dvw;
+  max-width: 72%;
+  margin-bottom: 32px;
+
+  div {
+    font-size: 1rem;
+  }
+}
+
+.mobile-order {
+  display: none;
+}
+
+.open-order {
+  align-items: center;
+  span {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .desktop-order {
+    display: none;
+  }
+
+  .mobile-order {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .desktop-order {
+    display: none;
+  }
+}

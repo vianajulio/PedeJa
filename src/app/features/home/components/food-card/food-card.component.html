@@ -1,0 +1,12 @@
+<div class="card mb-5 item-menu cursor-pointer" (click)="addToOrder()" >
+  <img
+    class="card-img-top"
+    src="assets/images/image.png"
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <h5>R$ {{ product.price | number : "1.2-2"}} </h5>
+  </div>
+</div>

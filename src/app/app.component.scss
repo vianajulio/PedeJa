@@ -1,0 +1,15 @@
+.max-window {
+  margin: auto;
+  max-width: 1440px;
+}
+
+.prevent-select {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b8b8b8 #fcfcfc;
+}
