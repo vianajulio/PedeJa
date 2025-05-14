@@ -24,7 +24,8 @@
           <input
             class="form-control"
             id="exampleFormControlInput1"
-            [placeholder]="address"
+            [(ngModel)]="address"
+            placeholder="Insira um endereço."
           />
         </div>
       </div>
@@ -32,8 +33,28 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Fechar
         </button>
-        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-primary" (click)="Save()">Salvar</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div
+    class="toast align-items-center text-bg-danger border-0"
+    role="alert"
+    id="addressToast"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body">Preencha o endereço antes de salvar!</div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
     </div>
   </div>
 </div>
