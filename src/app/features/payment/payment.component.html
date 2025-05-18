@@ -1,0 +1,70 @@
+<header class="padding-padrao logo">
+  <a href="/">
+    <div class="d-flex gap-1 align-items-center logo">
+      <h5 style="margin: 0">PedeAí</h5>
+      <span class="material-symbols-outlined"> soup_kitchen </span>
+    </div>
+  </a>
+  <div class="d-flex gap-2 clickable" id="account">
+    <div>
+      <span class="material-symbols-outlined" style="font-size: 32px">
+        settings
+      </span>
+    </div>
+  </div>
+</header>
+
+<div class="padding-padrao">
+  <div class="row">
+    <div class="col-xl-6 col-md-12 col-sm-12">
+      <app-address></app-address>
+
+      <div class="mb-3">
+        <app-order [paymentOrder]="true" [orderItems]="orderMap"></app-order>
+      </div>
+    </div>
+
+    <div class="col-xl-6 col-md-12 col-sm-12">
+      <h6>Métodos de Pagamento</h6>
+      <div class="card">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex align-items-center gap-3 mb-1 payment-methods">
+            <div>
+              <i class="fa-brands fa-pix"></i>
+              Pix
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> credit_card </span>
+              Crédito
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> credit_card </span>
+              Débito
+            </div>
+            <div>
+              <span class="material-symbols-outlined"> payments </span>
+              Dinheiro
+            </div>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-center">
+            <app-payment-qr-code></app-payment-qr-code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-xl-4 col-md-12 col-sm-12">
+      <div
+        class="d-flex justify-content-between cursor-pointer btn-finish-order btn"
+      >
+        Finalizar
+        <span class="material-symbols-outlined"> arrow_right_alt </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-address-modal></app-address-modal>

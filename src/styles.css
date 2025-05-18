@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/* Reset básico e box-sizing */
+*,
+*::before,
+*::after,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove decorações padrão */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tipografia e base visual */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  background-color: #fff;
+  color: #111;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}/*# sourceMappingURL=styles.css.map */

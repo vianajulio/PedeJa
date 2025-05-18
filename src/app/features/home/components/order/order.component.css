@@ -11,6 +11,10 @@ p {
   color: #b8b8b8;
 }
 
+.quantity-item-container {
+  border: 1px solid #b8b8b8;
+  border-radius: 4px;
+}
 
 .orders {
   max-height: 35dvh;
@@ -24,25 +28,20 @@ p {
     max-height: 100%;
   }
 }
-
 @media only screen and (min-width: 1200px) {
   .orders {
     padding: 0 16px;
   }
 }
-
-
-.finish-order {
-  p {
-    font-size: 1.2rem;
-  }
-  .btn-finish-order {
-    text-align: center;
-    font-size: 1rem;
-    margin-top: 1.5rem;
-    width: 100%;
-    color: #fcfcfc;
-    font-weight: 600;
-    background-color: #57b039;
-  }
+.finish-order p {
+  font-size: 1.2rem;
 }
+.finish-order .btn-finish-order {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  width: 100%;
+  color: #fcfcfc;
+  font-weight: 600;
+  background-color: #57b039;
+}/*# sourceMappingURL=order.component.css.map */

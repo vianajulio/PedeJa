@@ -1,0 +1,35 @@
+<ul>
+  <li *ngFor="let item of orderItemsList; let last = last">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-column mb-3">
+        <p>{{ item.product.name }}</p>
+        {{ item.product.description }}
+      </div>
+      <p>R$ {{ item.product.price * item.quantity | number : "1.2-2" }}</p>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex gap-3 p-1 quantity-item-container">
+        <span
+          class="material-symbols-outlined cursor-pointer"
+          (click)="increaseItemQuantity(item.product.id)"
+        >
+          add
+        </span>
+        <div>{{ item.quantity }}</div>
+        <span
+          class="material-symbols-outlined cursor-pointer"
+          (click)="decreaseItemQuantity(item.product.id)"
+        >
+          remove
+        </span>
+      </div>
+      <span
+        class="material-symbols-outlined btn-remove cursor-pointer"
+        (click)="removeFromOrder(item.product.id)"
+      >
+        delete
+      </span>
+    </div>
+    <hr *ngIf="!last" />
+  </li>
+</ul>

@@ -1,45 +1,9 @@
-<div *ngIf="orderItems.length > 0; else emptyCart">
+<div *ngIf="orderItemsArray.length > 0; else emptyCart">
   <h6>SEUS PEDIDOS</h6>
   <div class="card">
     <div class="card-body">
       <div class="orders mb-3">
-        <ul>
-          <li *ngFor="let item of orderItems; let last = last">
-            <div class="d-flex justify-content-between">
-              <div class="d-flex flex-column mb-3">
-                <p>{{ item.product.name }}</p>
-                {{ item.product.description }}
-              </div>
-              <p>
-                R$ {{ item.product.price * item.quantity | number : "1.2-2" }}
-              </p>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex gap-3 p-1 quantity-item-container">
-                <span
-                  class="material-symbols-outlined cursor-pointer"
-                  (click)="increaseQuantity(item.product.id)"
-                >
-                  add
-                </span>
-                <div>{{ item.quantity }}</div>
-                <span
-                  class="material-symbols-outlined cursor-pointer"
-                  (click)="decreaseQuantity(item.product.id)"
-                >
-                  remove
-                </span>
-              </div>
-              <span
-                class="material-symbols-outlined btn-remove cursor-pointer"
-                (click)="removeItem(item.product.id)"
-              >
-                delete
-              </span>
-            </div>
-            <hr *ngIf="!last" />
-          </li>
-        </ul>
+       <app-orders-items [order]="orderItems"></app-orders-items>
       </div>
 
       <div class="finish-order">
@@ -52,11 +16,22 @@
         <p>Total: R$ {{ total + deliveryTax | number : "1.2-2" }}</p>
 
         <div
+          *ngIf="!paymentOrder"
           class="d-flex justify-content-between cursor-pointer btn-finish-order btn"
+          (click)="navigateToPayment()"
         >
           Concluir pedido
           <span class="material-symbols-outlined"> arrow_right_alt </span>
         </div>
+
+        <!-- <div
+          *ngIf="paymentOrder"
+          class="d-flex justify-content-between cursor-pointer btn-finish-order btn"
+          (click)="navigateToPayment()"
+        >
+          Finalizar
+          <span class="material-symbols-outlined"> arrow_right_alt </span>
+        </div> -->
       </div>
     </div>
   </div>

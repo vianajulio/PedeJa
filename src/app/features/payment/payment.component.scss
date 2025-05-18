@@ -1,0 +1,64 @@
+.padding-padrao {
+  padding: 0 4rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  height: 64px;
+  margin-bottom: 64px;
+  background-color: #fcfcfc;
+
+  box-shadow: 1px 3px 3px 2px rgba(20, 20, 20, 0.068);
+  -webkit-box-shadow: 1px 3px 3px 2px rgba(20, 20, 20, 0.068);
+  -moz-box-shadow: 1px 3px 3px 2px rgba(20, 20, 20, 0.068);
+
+  .logo {
+    color: #57b039;
+  }
+
+  font-size: 32px;
+}
+.payment-methods {
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid #b3b3b3;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  div:nth-child(1) {
+    cursor: pointer;
+    background-color: #57b039;
+    color: #fcfcfc;
+  }
+
+  div:nth-child(n + 2) {
+    cursor: not-allowed;
+    background-color: #f3f3f3;
+    color: #b3b3b3;
+  }
+}
+
+
+// .finish-order {
+//   display: flex;
+//   justify-content: center;
+// }
+
+.btn-finish-order {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  // width: 16rem;
+  color: #fcfcfc;
+  font-weight: 600;
+  background-color: #57b039;
+}

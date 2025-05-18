@@ -10,7 +10,7 @@ import { Product } from '../../../../models/produto.model';
 })
 
 export class FoodCardComponent {
-  @Input() product: any;
+  @Input() product!: Product;
   @Output() add = new EventEmitter<any>();
 
   addToOrder() {
