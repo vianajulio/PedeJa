@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { LocalStorageService } from '../../../../services/local-storage.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-address',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './address.component.html',
   styleUrl: './address.component.scss',
 })

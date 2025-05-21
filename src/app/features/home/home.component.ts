@@ -5,8 +5,8 @@ import { Product } from '../../models/produto.model';
 import { OrderComponent } from './components/order/order.component';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { OrderItems } from '../../models/orderItem.model';
-import { AddressModalComponent } from './components/address-modal/address-modal.component';
-import { AddressComponent } from './components/address/address.component';
+import { AddressModalComponent } from '../shared-components/address-modal/address-modal.component';
+import { AddressComponent } from '../shared-components/address/address.component';
 import { OrderService } from '../../services/order.service';
 
 @Component({

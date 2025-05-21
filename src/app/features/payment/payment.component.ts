@@ -3,8 +3,8 @@ import { Product } from '../../models/produto.model';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { CommonModule } from '@angular/common';
 import { OrderItems } from '../../models/orderItem.model';
-import { AddressModalComponent } from "../home/components/address-modal/address-modal.component";
-import { AddressComponent } from "../home/components/address/address.component";
+import { AddressModalComponent } from "../shared-components/address-modal/address-modal.component";
+import { AddressComponent } from "../shared-components/address/address.component";
 import { OrderComponent } from "../home/components/order/order.component";
 import { PaymentQrCodeComponent } from './components/payment-qr-code/payment-qr-code.component';
 

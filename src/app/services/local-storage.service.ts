@@ -29,7 +29,7 @@ export class LocalStorageService {
   }
 
   private getAddressFromStorage(): string {
-    return this.storage.getItem('address') ?? 'Insira um endereço.';
+    return this.storage.getItem('address') ?? '';
   }
 
   setAddress(value: string) {

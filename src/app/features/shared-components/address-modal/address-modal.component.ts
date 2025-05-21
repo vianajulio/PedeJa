@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LocalStorageService } from '../../../../services/local-storage.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 import { FormsModule } from '@angular/forms';
 
 declare var bootstrap: any;
@@ -17,6 +17,7 @@ export class AddressModalComponent {
 
   constructor(private localStorage: LocalStorageService) {
     this.address = localStorage.getAddress();
+    console.log(this.address);
   }
 
   Save() {
@@ -30,6 +31,9 @@ export class AddressModalComponent {
     }
 
     this.localStorage.setAddress(this.address);
+    const modalEl = document.getElementById('addressModal');
+    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+    modalInstance?.hide();
   }
 
   showToast(message: string) {
