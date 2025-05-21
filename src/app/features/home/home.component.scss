@@ -1,5 +1,5 @@
 .padding-padrao {
-  padding: 0 64px;
+  padding: 0 4rem;
 }
 
 header {
@@ -21,6 +21,23 @@ header {
   .logo {
     color: #57b039;
   }
+
+  .order-qty {
+    position: absolute;
+    left: 14px;
+    bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: auto;
+    border-radius: 50%;
+
+    color: #fcfcfc;
+    background-color: #57b039;
+  }
 }
 
 .presentation {
@@ -39,6 +56,7 @@ header {
 
 .mobile-order {
   display: none;
+  position: relative;
 }
 
 .open-order {

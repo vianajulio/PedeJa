@@ -69,6 +69,13 @@ export class HomeComponent {
     orderItems: new Map<number, { product: Product; quantity: number }>(),
   };
 
+  get orderQty() {
+    return Array.from(this.orderMap.orderItems.values()).reduce(
+      (sum, order) => sum + order.quantity,
+      0
+    );
+  }
+
   constructor(private orderService: OrderService) {
     this.orderService.order$.subscribe((order) => {
       this.orderMap = order;

@@ -14,6 +14,7 @@
       >
         shopping_cart
       </span>
+      <div *ngIf="orderQty !== 0" class="order-qty">{{ this.orderQty }}</div>
     </div>
     <div>
       <span class="material-symbols-outlined" style="font-size: 32px">
