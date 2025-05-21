@@ -1,9 +1,9 @@
-<div *ngIf="orderItemsArray.length > 0; else emptyCart">
+<div *ngIf="orderItemsList.length > 0; else emptyCart">
   <h6>SEUS PEDIDOS</h6>
   <div class="card">
     <div class="card-body">
       <div class="orders mb-3">
-       <app-orders-items [order]="orderItems"></app-orders-items>
+       <app-orders-items></app-orders-items>
       </div>
 
       <div class="finish-order">
@@ -23,15 +23,6 @@
           Concluir pedido
           <span class="material-symbols-outlined"> arrow_right_alt </span>
         </div>
-
-        <!-- <div
-          *ngIf="paymentOrder"
-          class="d-flex justify-content-between cursor-pointer btn-finish-order btn"
-          (click)="navigateToPayment()"
-        >
-          Finalizar
-          <span class="material-symbols-outlined"> arrow_right_alt </span>
-        </div> -->
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { OrderItems } from '../../models/orderItem.model';
 import { AddressModalComponent } from './components/address-modal/address-modal.component';
 import { AddressComponent } from './components/address/address.component';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-home',
@@ -68,27 +69,13 @@ export class HomeComponent {
     orderItems: new Map<number, { product: Product; quantity: number }>(),
   };
 
-  constructor(private localStorage: LocalStorageService) {
-    this.orderMap = this.localStorage.getOrder();
+  constructor(private orderService: OrderService) {
+    this.orderService.order$.subscribe((order) => {
+      this.orderMap = order;
+    });
   }
 
   addToOrder(product: Product) {
-    if (this.orderMap.orderItems.has(product.id)) {
-      const existing = this.orderMap.orderItems.get(product.id)!;
-      this.orderMap.orderItems.set(product.id, {
-        product,
-        quantity: existing.quantity + 1,
-      });
-    } else {
-      this.orderMap.orderItems.set(product.id, { product, quantity: 1 });
-    }
-
-    this.localStorage.setOrder(this.orderMap);
-  }
-
-  onOrderItemsChange(newOrder: OrderItems) {
-    this.orderMap = newOrder;
-    console.log(this.orderMap);
-    this.localStorage.setOrder(this.orderMap);
+    this.orderService.addToOrder(product);
   }
 }

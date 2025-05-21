@@ -20,7 +20,6 @@ export class AddressModalComponent {
   }
 
   Save() {
-    console.log(this.address);
     if (!this.address.trim()) {
       this.showToast('Preencha o endereço!');
       return;

@@ -3,7 +3,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../../../models/produto.model';
 import { Router } from '@angular/router';
 import { OrdersItemsComponent } from '../orders-items/orders-items.component';
-import { OrderItems } from '../../../../models/orderItem.model';
+import { OrderService } from '../../../../services/order.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-order',
@@ -12,29 +14,31 @@ import { OrderItems } from '../../../../models/orderItem.model';
   styleUrl: './order.component.scss',
 })
 export class OrderComponent {
-  @Input() orderItems: OrderItems = {
-    orderItems: new Map<number, { product: Product; quantity: number }>(),
-  };
-  @Input() paymentOrder = false;
-  
-  constructor(private route: Router) {}
-
   orderVisible = false;
-
   deliveryTax: number = 15;
+  public orderItemsList: { product: Product; quantity: number }[] = [];
 
-  get orderItemsArray() {
-    return Array.from(this.orderItems.orderItems.values());
+  @Input() paymentOrder = false;
+
+  constructor(private route: Router, private orderService: OrderService) {
+    this.orderService.order$.subscribe((order) => {
+      this.orderItemsList = Array.from(order.orderItems.values());
+    });
   }
 
-  get total(): number {
-    return this.orderItemsArray.reduce(
+  get total() {
+    return this.orderItemsList.reduce(
       (sum, item) => sum + item.product.price * item.quantity,
       0
     );
   }
 
   navigateToPayment() {
+    const modalElement = document.getElementById('orders');
+    const modalInstance = bootstrap.Modal.getInstance(modalElement);
+    if (modalInstance) {
+      modalInstance.hide(); // Fecha o modal corretamente
+    }
     this.route.navigate(['/pagamento']);
   }
 }

@@ -1,6 +1,6 @@
 <header class="padding-padrao logo">
   <div class="d-flex gap-1 align-items-center logo">
-    <h5 style="margin: 0">PedeAí</h5>
+    <h5 style="margin: 0">Pede Já</h5>
     <span class="material-symbols-outlined"> soup_kitchen </span>
   </div>
   <div class="d-flex gap-2 clickable" id="account">
@@ -52,7 +52,7 @@
       <div class="desktop-order" style="position: sticky; top: 5rem">
         <aside>
           <app-address></app-address>
-          <app-order [orderItems]="orderMap"></app-order>
+          <app-order></app-order>
         </aside>
       </div>
     </div>
@@ -82,7 +82,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          <app-order [orderItems]="orderMap"></app-order>
+          <app-order></app-order>
         </div>
       </div>
     </div>

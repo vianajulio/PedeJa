@@ -1,7 +1,7 @@
 <header class="padding-padrao logo">
   <a href="/">
     <div class="d-flex gap-1 align-items-center logo">
-      <h5 style="margin: 0">PedeAí</h5>
+      <h5 style="margin: 0">Pede Já</h5>
       <span class="material-symbols-outlined"> soup_kitchen </span>
     </div>
   </a>
@@ -20,7 +20,7 @@
       <app-address></app-address>
 
       <div class="mb-3">
-        <app-order [paymentOrder]="true" [orderItems]="orderMap"></app-order>
+        <app-order [paymentOrder]="true"></app-order>
       </div>
     </div>
 
@@ -28,7 +28,7 @@
       <h6>Métodos de Pagamento</h6>
       <div class="card">
         <div class="card-body d-flex flex-column">
-          <div class="d-flex align-items-center gap-3 mb-1 payment-methods">
+          <div class="payment-methods">
             <div>
               <i class="fa-brands fa-pix"></i>
               Pix

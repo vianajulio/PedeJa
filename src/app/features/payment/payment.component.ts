@@ -6,7 +6,7 @@ import { OrderItems } from '../../models/orderItem.model';
 import { AddressModalComponent } from "../home/components/address-modal/address-modal.component";
 import { AddressComponent } from "../home/components/address/address.component";
 import { OrderComponent } from "../home/components/order/order.component";
-import { PaymentQrCodeComponent } from "../../shared/payment-qr-code/payment-qr-code.component";
+import { PaymentQrCodeComponent } from './components/payment-qr-code/payment-qr-code.component';
 
 @Component({
   selector: 'app-payment',
@@ -27,7 +27,6 @@ export class PaymentComponent {
   constructor(private localStorage: LocalStorageService) {
     this.orderMap = localStorage.getOrder();
     this.address = localStorage.getAddress();
-    console.log(this.orderMap);
   }
 
   orderVisible = false;
