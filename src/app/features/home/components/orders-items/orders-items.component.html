@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let item of orderItemsList; let last = last">
+  <li *ngFor="let item of orderItemsList.order; let last = last">
     <div class="d-flex justify-content-between">
       <div class="d-flex flex-column mb-3">
         <p>{{ item.product.name }}</p>

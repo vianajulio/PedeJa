@@ -6,9 +6,15 @@
     </div>
   </a>
   <div class="d-flex gap-2 clickable" id="account">
-    <div>
-      <span class="material-symbols-outlined" style="font-size: 32px">
-        settings
+    <div *ngIf="this.checkOrder">
+      <span
+        class="material-symbols-outlined btn"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offCanvasOrders"
+        aria-controls="offCanvasOrders"
+        style="font-size: 32px"
+      >
+        receipt_long
       </span>
     </div>
   </div>
@@ -25,46 +31,91 @@
     </div>
 
     <div class="col-xl-6 col-md-12 col-sm-12">
-      <h6>Métodos de Pagamento</h6>
-      <div class="card">
-        <div class="card-body d-flex flex-column">
-          <div class="payment-methods">
-            <div>
-              <i class="fa-brands fa-pix"></i>
-              Pix
+      <div>
+        <h6 *ngIf="paymentOrder">Métodos de Pagamento</h6>
+        <h6 *ngIf="!paymentOrder">Aguardando confirmação...</h6>
+        <div class="card">
+          <div class="card-body d-flex flex-column">
+            <div class="payment-methods">
+              <div>
+                <i class="fa-brands fa-pix"></i>
+                Pix
+              </div>
+              <div>
+                <span class="material-symbols-outlined"> credit_card </span>
+                Crédito
+              </div>
+              <div>
+                <span class="material-symbols-outlined"> credit_card </span>
+                Débito
+              </div>
+              <div>
+                <span class="material-symbols-outlined"> payments </span>
+                Dinheiro
+              </div>
             </div>
-            <div>
-              <span class="material-symbols-outlined"> credit_card </span>
-              Crédito
-            </div>
-            <div>
-              <span class="material-symbols-outlined"> credit_card </span>
-              Débito
-            </div>
-            <div>
-              <span class="material-symbols-outlined"> payments </span>
-              Dinheiro
+            <hr />
+            <div class="d-flex justify-content-center">
+              <div *ngIf="paymentOrder">
+                <app-payment-qr-code></app-payment-qr-code>
+
+                <div
+                  class="d-flex justify-content-center cursor-pointer btn-finish-order btn"
+                  (click)="reset()"
+                >
+                  Finalizar
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-center" *ngIf="!paymentOrder">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
             </div>
           </div>
-          <hr />
-          <div class="d-flex justify-content-center">
-            <app-payment-qr-code></app-payment-qr-code>
-          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-xl-6 col-md-12 col-sm-12">
+        <div
+          class="d-flex justify-content-between cursor-pointer btn-finish-order btn"
+          (click)="finishOrder()"
+        >
+          Concluir pedido
+          <span class="material-symbols-outlined"> arrow_right_alt </span>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-xl-4 col-md-12 col-sm-12">
-      <div
-        class="d-flex justify-content-between cursor-pointer btn-finish-order btn"
-      >
-        Finalizar
-        <span class="material-symbols-outlined"> arrow_right_alt </span>
+  <app-address-modal></app-address-modal>
+
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div
+      class="toast align-items-center border-0"
+      role="alert"
+      id="finish-payment-toast"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="d-flex">
+        <div class="toast-body">{{ this.toastMessage }}</div>
+        <button
+          type="button"
+          class="btn-close btn-close-white me-2 m-auto"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
       </div>
     </div>
   </div>
 </div>
 
-<app-address-modal></app-address-modal>
+<app-confirm-orders
+  [checkOrder]="checkOrder"
+  (checkOrderChange)="checkOrder = $event"
+  (paymentOrderChange)="paymentOrder = $event"
+></app-confirm-orders>

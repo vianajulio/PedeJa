@@ -1,4 +1,4 @@
-<div *ngIf="orderItemsList.length > 0; else emptyCart">
+<div *ngIf="hasOrderItems; else emptyCart">
   <h6>SEUS PEDIDOS</h6>
   <div class="card">
     <div class="card-body">

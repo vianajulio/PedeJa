@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../../../models/produto.model';
-import { OrderItems } from '../../../../models/orderItem.model';
-import { LocalStorageService } from '../../../../services/local-storage.service';
 import { OrderService } from '../../../../services/order.service';
+import { Order } from '../../../../models/orderItem.model';
+import {v4 as uuidv4} from 'uuid';
 
 @Component({
   selector: 'app-orders-items',
@@ -13,11 +12,14 @@ import { OrderService } from '../../../../services/order.service';
   styleUrl: './orders-items.component.scss',
 })
 export class OrdersItemsComponent {
-   public orderItemsList: { product: Product; quantity: number }[] = [];
+   public orderItemsList:  Order = {
+       id: uuidv4(),
+       order: [],
+     };
 
   constructor(private orderService: OrderService) {
     this.orderService.order$.subscribe((order) => {
-      this.orderItemsList = Array.from(order.orderItems.values());
+      this.orderItemsList = order;
     });
   }
 

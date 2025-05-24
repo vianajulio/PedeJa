@@ -3,11 +3,14 @@ import { Component } from '@angular/core';
 import { FoodCardComponent } from './components/food-card/food-card.component';
 import { Product } from '../../models/produto.model';
 import { OrderComponent } from './components/order/order.component';
-import { LocalStorageService } from '../../services/local-storage.service';
-import { OrderItems } from '../../models/orderItem.model';
 import { AddressModalComponent } from '../shared-components/address-modal/address-modal.component';
 import { AddressComponent } from '../shared-components/address/address.component';
 import { OrderService } from '../../services/order.service';
+import { Order } from '../../models/orderItem.model';
+import { v4 as uuidv4 } from 'uuid';
+import { LocalStorageService } from '../../services/local-storage.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-home',
@@ -65,18 +68,21 @@ export class HomeComponent {
     },
   ];
 
-  public orderMap: OrderItems = {
-    orderItems: new Map<number, { product: Product; quantity: number }>(),
+  public orderMap: Order = {
+    id: uuidv4(),
+    order: [],
   };
 
   get orderQty() {
-    return Array.from(this.orderMap.orderItems.values()).reduce(
-      (sum, order) => sum + order.quantity,
-      0
+    return (
+      this.orderMap?.order?.reduce((sum, order) => sum + order.quantity, 0) ?? 0
     );
   }
 
-  constructor(private orderService: OrderService) {
+  constructor(
+    private orderService: OrderService,
+    private localStorage: LocalStorageService
+  ) {
     this.orderService.order$.subscribe((order) => {
       this.orderMap = order;
     });
@@ -84,5 +90,41 @@ export class HomeComponent {
 
   addToOrder(product: Product) {
     this.orderService.addToOrder(product);
+  }
+
+  ngOnInit(): void {
+    this.orderService.order$.subscribe((order) => {
+      this.orderMap = order;
+    });
+    const toastMessage = this.localStorage.getToastMessage();
+    console.log(toastMessage);
+
+    if (toastMessage) {
+      this.showToast('Pedido enviado com sucesso!', () => {
+        this.localStorage.removeToastMessage();
+      });
+    }
+  }
+
+  showToast(message: string, afterToast?: () => void) {
+    const toastEl = document.getElementById('finish-payment-toast');
+    const toastMsg = document.getElementById('toast-message');
+
+    if (toastEl && toastMsg) {
+      toastMsg.textContent = message;
+
+      const toast = bootstrap.Toast.getOrCreateInstance(toastEl);
+
+      if (afterToast) {
+        const handler = () => {
+          afterToast();
+          toastEl.removeEventListener('hidden.bs.toast', handler);
+        };
+
+        toastEl.addEventListener('hidden.bs.toast', handler);
+      }
+
+      toast.show();
+    }
   }
 }

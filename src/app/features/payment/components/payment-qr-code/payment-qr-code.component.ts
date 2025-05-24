@@ -18,8 +18,6 @@ export class PaymentQrCodeComponent {
   toastMessage: string = '';
 
   copyLink() {
-    console.log('ué');
-
     if (navigator.clipboard) {
       navigator.clipboard
         .writeText(this.paymentKey)

@@ -1,0 +1,78 @@
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="offCanvasOrders"
+  aria-labelledby="offCanvasOrdersLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offCanvasOrdersLabel">
+      Pedidos realizados
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="card" *ngIf="this.checkOrder">
+      <div class="card-body">
+        <h5 class="card-title">Pedido n° 01</h5>
+        <div>{{ this.address }}</div>
+        <div class="mb-3">Valor:</div>
+        <div class="row">
+          <div class="cursor-pointer col-4">
+            <span class="material-symbols-outlined" (click)="closeOrder()">
+              cancel
+            </span>
+          </div>
+          <div class="cursor-pointer col-4">
+            <span
+              class="material-symbols-outlined"
+              data-bs-toggle="modal"
+              data-bs-target="#orderInfoModal"
+            >
+              open_in_full
+            </span>
+          </div>
+          <div class="cursor-pointer col-4">
+            <span class="material-symbols-outlined" (click)="acceptOrder()">
+              check_circle
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="orderInfoModal"
+  tabindex="-1"
+  aria-labelledby="orderInfoModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="orderInfoModalLabel">Informações</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-order [paymentOrder]="true"></app-order>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

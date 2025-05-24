@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../models/produto.model';
-import { OrderItems } from '../models/orderItem.model';
 import { BehaviorSubject } from 'rxjs';
+import { Order } from '../models/orderItem.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
@@ -13,19 +13,31 @@ export class LocalStorageService {
 
   constructor() {
     this.storage = window.sessionStorage;
-    this.addressSubject = new BehaviorSubject<string>(this.getAddressFromStorage());
+    this.addressSubject = new BehaviorSubject<string>(
+      this.getAddressFromStorage()
+    );
     this.address$ = this.addressSubject.asObservable();
   }
 
-  setOrder(value: OrderItems) {
-    let valueJson = JSON.stringify(Array.from(value.orderItems));
+  setOrder(value: Order) {
+    const valueJson = JSON.stringify(value);
     this.storage.setItem('order', valueJson);
   }
 
-  getOrder(): OrderItems {
-    const entries = JSON.parse(this.storage.getItem('order') || '[]');
-    const orderItems = new Map<number, { product: Product; quantity: number }>(entries);
-    return { orderItems };
+  getOrder(): Order {
+    const raw = this.storage.getItem('order');
+    if (raw) {
+      try {
+        return JSON.parse(raw) as Order;
+      } catch (e) {
+        console.error('Erro ao parsear pedido do localStorage:', e);
+      }
+    }
+
+    return {
+      id: uuidv4(),
+      order: [],
+    };
   }
 
   private getAddressFromStorage(): string {
@@ -40,4 +52,22 @@ export class LocalStorageService {
   getAddress(): string {
     return this.addressSubject.value;
   }
+
+  resetOrderLocalStorage() {
+    this.storage.removeItem("order");
+  }
+
+  setToastMessage(message: string) {
+    this.storage.setItem('toastMessage', message);
+  }
+
+  getToastMessage(): string | null {
+    let message = this.storage.getItem('toastMessage');
+    return message;
+  }
+
+  removeToastMessage(){
+    this.storage.removeItem("toastMessage");
+  }
+  
 }

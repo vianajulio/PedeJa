@@ -27,7 +27,7 @@ header {
 .payment-methods {
   display: flex;
   gap: 1rem;
-  overflow-x: auto;  
+  overflow-x: auto;
   div {
     display: flex;
     align-items: center;
@@ -58,4 +58,8 @@ header {
   color: #fcfcfc;
   font-weight: 600;
   background-color: #57b039;
+}
+
+.material-symbols-outlined.btn {
+  padding: 0;
 }

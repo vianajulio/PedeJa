@@ -17,7 +17,6 @@ export class AddressModalComponent {
 
   constructor(private localStorage: LocalStorageService) {
     this.address = localStorage.getAddress();
-    console.log(this.address);
   }
 
   Save() {
